@@ -25,12 +25,14 @@ def user_api_view(request):
         users = User.objects.all()
         users_serializer = UserSerializer(users, many=True)
         test_data={
-            'username':'test',
+            'username':'developer',
             'email':'test@org.com',
             'password':'1234567'
         }
         test_user=TestUserSerializer(data=test_data, context=test_data)
         if test_user.is_valid():
+            user_instance=test_user.save()
+            print(user_instance)
             print('Pasó validaciones')
         else:
             print(test_user.errors)

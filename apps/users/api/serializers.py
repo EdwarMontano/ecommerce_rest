@@ -31,3 +31,7 @@ class TestUserSerializer(serializers.Serializer):
         #     raise serializers.ValidationError('El email no puede contener el username')
         print('Validaciones generales')
         return data
+    
+    def create(self, validated_data):
+        print('Creando usuario')
+        return User.objects.create(**validated_data)
