@@ -1,24 +1,47 @@
 from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from apps.users.api.serializers import UserSerializer
+from apps.users.api.serializers import UserSerializer,TestUserSerializer
 from apps.users.models import User
 
 @api_view(['GET', 'POST'])
 def user_api_view(request):
-    
+    """user_api_view _summary_
+
+    create and list users
+
+    Args
+    ----------
+    request (HttpRequest): The HTTP request received by the view.
+
+    Returns
+    -------
+    response: Un objeto Response que contiene listado de usuarios
+
+    Example:
+        GET /users/listAll/ """
     if request.method == 'GET':
         users = User.objects.all()
         users_serializer = UserSerializer(users, many=True)
-        return Response(users_serializer.data)
+        test_data={
+            'username':'test',
+            'email':'test@org.com',
+            'password':'1234567'
+        }
+        test_user=TestUserSerializer(data=test_data)
+        if test_user.is_valid():
+            print('Pasó validaciones')
+            
+        return Response(users_serializer.data,status=status.HTTP_200_OK)
     
     elif request.method == 'POST':
         user_serializer = UserSerializer(data=request.data)
         print(request.data)
         if user_serializer.is_valid():
             user_serializer.save()
-            return Response(user_serializer.data)
-        return Response(user_serializer.errors)
+            return Response(user_serializer.data,status=status.HTTP_201_CREATED)
+        return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # def post(self, request):
     #     user_serializer = UserSerializer(data=request.data)
@@ -29,21 +52,44 @@ def user_api_view(request):
     
 @api_view(['GET','PUT','DELETE'])
 def user_detail_api_view(request, pk=None):
-    
+    """user_detail_api_view _summary_
+
+    Esta vista maneja las solicitudes GET, PUT y DELETE para ver, actualizar y eliminar
+    un usuario específico.
+
+    Args:
+        request (HttpRequest): La solicitud HTTP recibida por la vista.
+        pk (int, optional): La clave primaria (ID) del usuario que se desea ver o modificar.
+
+    Returns:
+        Response: Un objeto Response que contiene los datos del usuario solicitado o un mensaje de éxito/fracaso.
+
+    PermissionDenied: Si el usuario no tiene permisos para acceder a esta vista.
+
+    Examples:
+        Para ver un usuario existente:
+        GET /api/users/1/
+
+        Para actualizar un usuario existente:
+        PUT /api/users/1/
+
+        Para eliminar un usuario existente:
+        DELETE /api/users/1/
+    """
+    # validation
+    if not (user := User.objects.filter(id=pk).first()):
+        return Response({'messsage':'USER NOT FOUND'},status=status.HTTP_400_BAD_REQUEST)
     if request.method == 'GET':
-        user = User.objects.filter(id=pk).first()
         user_serializer = UserSerializer(user)
-        return Response(user_serializer.data)
-    
+        return Response(user_serializer.data,status=status.HTTP_200_OK)
+
     if request.method == 'PUT':
-        user = User.objects.filter(id=pk).first()
         user_serializer = UserSerializer(user, data=request.data)
         if user_serializer.is_valid():
             user_serializer.save()
-            return Response(user_serializer.data)
-        return Response(user_serializer.errors)
-    
+            return Response(user_serializer.data,status=status.HTTP_200_OK)
+        return Response(user_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
     if request.method == 'DELETE':
-        user = User.objects.filter(id=pk).first()
         user.delete()
-        return Response('Usuario eliminado correctamente')
+        return Response({'messsage':'Usuario eliminado correctamente'},status=status.HTTP_200_OK)
