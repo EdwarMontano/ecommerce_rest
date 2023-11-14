@@ -18,8 +18,8 @@ class TestUserSerializer(serializers.Serializer):
     def validate_email(self, value):
         if value == '':
             raise serializers.ValidationError('El campo email no puede estar vacío')
-        if self.validate_username(self.context['username']) in value:
-            raise serializers.ValidationError('El email no puede contener el username')
+        # if self.validate_username(self.context['username']) in value:
+        #     raise serializers.ValidationError('El email no puede contener el username')
         print('Pasó validación email')
         return value
     def validate_password(self, value):
@@ -35,3 +35,11 @@ class TestUserSerializer(serializers.Serializer):
     def create(self, validated_data):
         print('Creando usuario')
         return User.objects.create(**validated_data)
+    
+    def update(self, instance, validated_data):
+        print('Actualizando usuario')
+        instance.username = validated_data.get('username', instance.username)
+        instance.email = validated_data.get('email', instance.email)
+        instance.password = validated_data.get('password', instance.password)
+        instance.save()
+        return instance
