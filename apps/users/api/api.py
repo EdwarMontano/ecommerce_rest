@@ -29,9 +29,11 @@ def user_api_view(request):
             'email':'test@org.com',
             'password':'1234567'
         }
-        test_user=TestUserSerializer(data=test_data)
+        test_user=TestUserSerializer(data=test_data, context=test_data)
         if test_user.is_valid():
             print('Pasó validaciones')
+        else:
+            print(test_user.errors)
             
         return Response(users_serializer.data,status=status.HTTP_200_OK)
     
