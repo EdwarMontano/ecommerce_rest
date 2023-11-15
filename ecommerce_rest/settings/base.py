@@ -34,6 +34,8 @@ THIRD_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.base',
+    'apps.products',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -112,3 +114,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 2+|3I:?9%Gwx
+# /Users/chocoplot/Library/Caches/pypoetry/virtualenvs/ecommerce-rest-SKrAOddU-py3.10/lib/python3.10/site-packages/django/contrib/auth/migrations
