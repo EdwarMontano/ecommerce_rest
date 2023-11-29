@@ -7,7 +7,6 @@ import simple_history.models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -16,171 +15,440 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CategoryProduct',
+            name="CategoryProduct",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(auto_now_add=True, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(auto_now=True, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(auto_now=True, verbose_name='Fecha de Eliminación')),
-                ('description', models.CharField(max_length=50, unique=True, verbose_name='Descripcion')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(auto_now_add=True, verbose_name="Fecha de Creación"),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Modificación"),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Eliminación"),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        max_length=50, unique=True, verbose_name="Descripcion"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Categoría de Producto',
-                'verbose_name_plural': 'Categorías de Productos',
+                "verbose_name": "Categoría de Producto",
+                "verbose_name_plural": "Categorías de Productos",
             },
         ),
         migrations.CreateModel(
-            name='MeasureUnit',
+            name="MeasureUnit",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(auto_now_add=True, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(auto_now=True, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(auto_now=True, verbose_name='Fecha de Eliminación')),
-                ('description', models.CharField(max_length=50, unique=True, verbose_name='Descripción')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(auto_now_add=True, verbose_name="Fecha de Creación"),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Modificación"),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Eliminación"),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        max_length=50, unique=True, verbose_name="Descripción"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Unidad de Medida',
-                'verbose_name_plural': 'Unidades de Medidas',
+                "verbose_name": "Unidad de Medida",
+                "verbose_name_plural": "Unidades de Medidas",
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(auto_now_add=True, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(auto_now=True, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(auto_now=True, verbose_name='Fecha de Eliminación')),
-                ('name', models.CharField(max_length=150, unique=True, verbose_name='Nombre de Producto')),
-                ('description', models.TextField(verbose_name='Descripción de Producto')),
-                ('image', models.ImageField(blank=True, null=True, upload_to='products/', verbose_name='Imagen del Producto')),
-                ('category_product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='products.categoryproduct', verbose_name='Categoria de Producto')),
-                ('measure_unit', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='products.measureunit', verbose_name='Unidad de Medida')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(auto_now_add=True, verbose_name="Fecha de Creación"),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Modificación"),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Eliminación"),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=150, unique=True, verbose_name="Nombre de Producto"
+                    ),
+                ),
+                ("description", models.TextField(verbose_name="Descripción de Producto")),
+                (
+                    "image",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="products/",
+                        verbose_name="Imagen del Producto",
+                    ),
+                ),
+                (
+                    "category_product",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="products.categoryproduct",
+                        verbose_name="Categoria de Producto",
+                    ),
+                ),
+                (
+                    "measure_unit",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="products.measureunit",
+                        verbose_name="Unidad de Medida",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Producto',
-                'verbose_name_plural': 'Productos',
+                "verbose_name": "Producto",
+                "verbose_name_plural": "Productos",
             },
         ),
         migrations.CreateModel(
-            name='Indicator',
+            name="Indicator",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(auto_now_add=True, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(auto_now=True, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(auto_now=True, verbose_name='Fecha de Eliminación')),
-                ('descount_value', models.PositiveSmallIntegerField(default=0)),
-                ('category_product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.categoryproduct', verbose_name='Indicador de Oferta')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(auto_now_add=True, verbose_name="Fecha de Creación"),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Modificación"),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(auto_now=True, verbose_name="Fecha de Eliminación"),
+                ),
+                ("descount_value", models.PositiveSmallIntegerField(default=0)),
+                (
+                    "category_product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="products.categoryproduct",
+                        verbose_name="Indicador de Oferta",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Indicador de Oferta',
-                'verbose_name_plural': 'Indicadores de Ofertas',
+                "verbose_name": "Indicador de Oferta",
+                "verbose_name_plural": "Indicadores de Ofertas",
             },
         ),
         migrations.CreateModel(
-            name='HistoricalProduct',
+            name="HistoricalProduct",
             fields=[
-                ('id', models.IntegerField(blank=True, db_index=True)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Eliminación')),
-                ('name', models.CharField(db_index=True, max_length=150, verbose_name='Nombre de Producto')),
-                ('description', models.TextField(verbose_name='Descripción de Producto')),
-                ('image', models.TextField(blank=True, max_length=100, null=True, verbose_name='Imagen del Producto')),
-                ('history_id', models.AutoField(primary_key=True, serialize=False)),
-                ('history_date', models.DateTimeField(db_index=True)),
-                ('history_change_reason', models.CharField(max_length=100, null=True)),
-                ('history_type', models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
-                ('category_product', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='products.categoryproduct', verbose_name='Categoria de Producto')),
-                ('history_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
-                ('measure_unit', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='products.measureunit', verbose_name='Unidad de Medida')),
+                ("id", models.IntegerField(blank=True, db_index=True)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Creación"
+                    ),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Modificación"
+                    ),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Eliminación"
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        db_index=True, max_length=150, verbose_name="Nombre de Producto"
+                    ),
+                ),
+                ("description", models.TextField(verbose_name="Descripción de Producto")),
+                (
+                    "image",
+                    models.TextField(
+                        blank=True,
+                        max_length=100,
+                        null=True,
+                        verbose_name="Imagen del Producto",
+                    ),
+                ),
+                ("history_id", models.AutoField(primary_key=True, serialize=False)),
+                ("history_date", models.DateTimeField(db_index=True)),
+                ("history_change_reason", models.CharField(max_length=100, null=True)),
+                (
+                    "history_type",
+                    models.CharField(
+                        choices=[("+", "Created"), ("~", "Changed"), ("-", "Deleted")],
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "category_product",
+                    models.ForeignKey(
+                        blank=True,
+                        db_constraint=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="+",
+                        to="products.categoryproduct",
+                        verbose_name="Categoria de Producto",
+                    ),
+                ),
+                (
+                    "history_user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "measure_unit",
+                    models.ForeignKey(
+                        blank=True,
+                        db_constraint=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="+",
+                        to="products.measureunit",
+                        verbose_name="Unidad de Medida",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'historical Producto',
-                'verbose_name_plural': 'historical Productos',
-                'ordering': ('-history_date', '-history_id'),
-                'get_latest_by': ('history_date', 'history_id'),
+                "verbose_name": "historical Producto",
+                "verbose_name_plural": "historical Productos",
+                "ordering": ("-history_date", "-history_id"),
+                "get_latest_by": ("history_date", "history_id"),
             },
             bases=(simple_history.models.HistoricalChanges, models.Model),
         ),
         migrations.CreateModel(
-            name='HistoricalMeasureUnit',
+            name="HistoricalMeasureUnit",
             fields=[
-                ('id', models.IntegerField(blank=True, db_index=True)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Eliminación')),
-                ('description', models.CharField(db_index=True, max_length=50, verbose_name='Descripción')),
-                ('history_id', models.AutoField(primary_key=True, serialize=False)),
-                ('history_date', models.DateTimeField(db_index=True)),
-                ('history_change_reason', models.CharField(max_length=100, null=True)),
-                ('history_type', models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
-                ('history_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
+                ("id", models.IntegerField(blank=True, db_index=True)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Creación"
+                    ),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Modificación"
+                    ),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Eliminación"
+                    ),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        db_index=True, max_length=50, verbose_name="Descripción"
+                    ),
+                ),
+                ("history_id", models.AutoField(primary_key=True, serialize=False)),
+                ("history_date", models.DateTimeField(db_index=True)),
+                ("history_change_reason", models.CharField(max_length=100, null=True)),
+                (
+                    "history_type",
+                    models.CharField(
+                        choices=[("+", "Created"), ("~", "Changed"), ("-", "Deleted")],
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "history_user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'historical Unidad de Medida',
-                'verbose_name_plural': 'historical Unidades de Medidas',
-                'ordering': ('-history_date', '-history_id'),
-                'get_latest_by': ('history_date', 'history_id'),
+                "verbose_name": "historical Unidad de Medida",
+                "verbose_name_plural": "historical Unidades de Medidas",
+                "ordering": ("-history_date", "-history_id"),
+                "get_latest_by": ("history_date", "history_id"),
             },
             bases=(simple_history.models.HistoricalChanges, models.Model),
         ),
         migrations.CreateModel(
-            name='HistoricalIndicator',
+            name="HistoricalIndicator",
             fields=[
-                ('id', models.IntegerField(blank=True, db_index=True)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Eliminación')),
-                ('descount_value', models.PositiveSmallIntegerField(default=0)),
-                ('history_id', models.AutoField(primary_key=True, serialize=False)),
-                ('history_date', models.DateTimeField(db_index=True)),
-                ('history_change_reason', models.CharField(max_length=100, null=True)),
-                ('history_type', models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
-                ('category_product', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='products.categoryproduct', verbose_name='Indicador de Oferta')),
-                ('history_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
+                ("id", models.IntegerField(blank=True, db_index=True)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Creación"
+                    ),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Modificación"
+                    ),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Eliminación"
+                    ),
+                ),
+                ("descount_value", models.PositiveSmallIntegerField(default=0)),
+                ("history_id", models.AutoField(primary_key=True, serialize=False)),
+                ("history_date", models.DateTimeField(db_index=True)),
+                ("history_change_reason", models.CharField(max_length=100, null=True)),
+                (
+                    "history_type",
+                    models.CharField(
+                        choices=[("+", "Created"), ("~", "Changed"), ("-", "Deleted")],
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "category_product",
+                    models.ForeignKey(
+                        blank=True,
+                        db_constraint=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="+",
+                        to="products.categoryproduct",
+                        verbose_name="Indicador de Oferta",
+                    ),
+                ),
+                (
+                    "history_user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'historical Indicador de Oferta',
-                'verbose_name_plural': 'historical Indicadores de Ofertas',
-                'ordering': ('-history_date', '-history_id'),
-                'get_latest_by': ('history_date', 'history_id'),
+                "verbose_name": "historical Indicador de Oferta",
+                "verbose_name_plural": "historical Indicadores de Ofertas",
+                "ordering": ("-history_date", "-history_id"),
+                "get_latest_by": ("history_date", "history_id"),
             },
             bases=(simple_history.models.HistoricalChanges, models.Model),
         ),
         migrations.CreateModel(
-            name='HistoricalCategoryProduct',
+            name="HistoricalCategoryProduct",
             fields=[
-                ('id', models.IntegerField(blank=True, db_index=True)),
-                ('state', models.BooleanField(default=True, verbose_name='Estado')),
-                ('created_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Creación')),
-                ('modified_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Modificación')),
-                ('deleted_date', models.DateField(blank=True, editable=False, verbose_name='Fecha de Eliminación')),
-                ('description', models.CharField(db_index=True, max_length=50, verbose_name='Descripcion')),
-                ('history_id', models.AutoField(primary_key=True, serialize=False)),
-                ('history_date', models.DateTimeField(db_index=True)),
-                ('history_change_reason', models.CharField(max_length=100, null=True)),
-                ('history_type', models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
-                ('history_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
-                ('measure_unit', models.ForeignKey(blank=True, db_constraint=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to='products.measureunit', verbose_name='Unidad de Medida')),
+                ("id", models.IntegerField(blank=True, db_index=True)),
+                ("state", models.BooleanField(default=True, verbose_name="Estado")),
+                (
+                    "created_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Creación"
+                    ),
+                ),
+                (
+                    "modified_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Modificación"
+                    ),
+                ),
+                (
+                    "deleted_date",
+                    models.DateField(
+                        blank=True, editable=False, verbose_name="Fecha de Eliminación"
+                    ),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        db_index=True, max_length=50, verbose_name="Descripcion"
+                    ),
+                ),
+                ("history_id", models.AutoField(primary_key=True, serialize=False)),
+                ("history_date", models.DateTimeField(db_index=True)),
+                ("history_change_reason", models.CharField(max_length=100, null=True)),
+                (
+                    "history_type",
+                    models.CharField(
+                        choices=[("+", "Created"), ("~", "Changed"), ("-", "Deleted")],
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "history_user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "measure_unit",
+                    models.ForeignKey(
+                        blank=True,
+                        db_constraint=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="+",
+                        to="products.measureunit",
+                        verbose_name="Unidad de Medida",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'historical Categoría de Producto',
-                'verbose_name_plural': 'historical Categorías de Productos',
-                'ordering': ('-history_date', '-history_id'),
-                'get_latest_by': ('history_date', 'history_id'),
+                "verbose_name": "historical Categoría de Producto",
+                "verbose_name_plural": "historical Categorías de Productos",
+                "ordering": ("-history_date", "-history_id"),
+                "get_latest_by": ("history_date", "history_id"),
             },
             bases=(simple_history.models.HistoricalChanges, models.Model),
         ),
         migrations.AddField(
-            model_name='categoryproduct',
-            name='measure_unit',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.measureunit', verbose_name='Unidad de Medida'),
+            model_name="categoryproduct",
+            name="measure_unit",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="products.measureunit",
+                verbose_name="Unidad de Medida",
+            ),
         ),
     ]
